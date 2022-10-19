@@ -6,26 +6,27 @@ from bs4 import BeautifulSoup
 
 load_dotenv()
 
-session = requests.Session()
+if not os.path.isfile('./data/fuel.html'):
+    session = requests.Session()
 
-url_ua = os.environ.get("URL_UA")
-user = fake_useragent.UserAgent().random
+    url_ua = os.environ.get("URL_UA")
+    user = fake_useragent.UserAgent().random
 
-header = {
-    'user-agent': user
-}
-data = {
-    'UserName': os.environ.get("USERNAME_UA"),
-    'Password': os.environ.get("PASSWORD_UA")
-}
+    header = {
+        'user-agent': user
+    }
+    data = {
+        'UserName': os.environ.get("USERNAME_UA"),
+        'Password': os.environ.get("PASSWORD_UA")
+    }
 
-response = session.post(url_ua, data=data, headers=header).text
+    response = session.post(url_ua, data=data, headers=header).text
 
-fuel_info = os.environ.get("URL_FUEL_INFO")
-fuel_info_res = session.get(fuel_info, headers=header).text
+    fuel_info = os.environ.get("URL_FUEL_INFO")
+    fuel_info_res = session.get(fuel_info, headers=header).text
 
-with open("./data/fuel.html", "w") as file:
-    file.write(fuel_info_res)
+    with open("./data/fuel.html", "w") as file:
+        file.write(fuel_info_res)
 
 with open("./data/fuel.html") as file:
     fuel_info_res = file.read()
