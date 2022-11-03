@@ -4,6 +4,7 @@ import fake_useragent
 import requests
 from bs4 import BeautifulSoup
 import doctest
+# vscode 03.11.2022
 
 
 load_dotenv()
