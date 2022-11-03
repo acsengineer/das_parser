@@ -3,6 +3,8 @@ from dotenv import load_dotenv
 import fake_useragent
 import requests
 from bs4 import BeautifulSoup
+import doctest
+
 
 load_dotenv()
 
